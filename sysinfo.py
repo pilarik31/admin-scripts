@@ -1,3 +1,5 @@
+#!/usr/bin/env python3
+
 import platform
 
 print("Architecture: " + platform.architecture()[0])
@@ -33,7 +35,7 @@ with open("/proc/uptime", "r") as f:
 uptime = int(float(uptime))
 uptime_hours = uptime // 3600
 uptime_minutes = (uptime % 3600) // 60
-print("Uptime: " + str(uptime_hours) + ":" + str(uptime_minutes) + " hours")
+print("Uptime: " + str(uptime_hours) + "hours, " + str(uptime_minutes) + " minutes")
 
 # Load
 with open("/proc/loadavg", "r") as f:
