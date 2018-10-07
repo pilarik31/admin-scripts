@@ -48,8 +48,8 @@ print("Memory Info: ")
 with open("/proc/meminfo", "r") as f:
     lines = f.readlines()
 
-print("     " + lines[0].strip().format(humanbytes))
-print("     " + lines[1].strip().format(humanbytes))
+print("     " + format(lines[0].strip(),humanbytes((lines[0].strip())))
+print("     " + format(lines[0].strip(),humanbytes((lines[0].strip())))
 
 # Uptime
 uptime = None
