@@ -1,6 +1,6 @@
 #!/bin/bash
 
-input="autowgetlist.txt"
+input="input.txt"
 outputDir="./autowgetOutput/"
 
 echo "===KONTROLA==="
