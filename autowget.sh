@@ -1,7 +1,7 @@
 #!/bin/bash
 
 input="wgetlist.txt"
-outputDir="./wgetautoOutput/"
+outputDir="./autowgetOutput/"
 
 echo "===KONTROLA==="
 echo "Spuštěno z: $PWD"
