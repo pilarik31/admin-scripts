@@ -1,15 +1,17 @@
 #!/bin/sh
 
-for zip in /*.zip
+for zip in *.zip
 do
-  dirname=`echo cache/$zip | sed 's/\.zip$//'`
+  dirname=`echo $zip | sed 's/\.zip$//'`
   if mkdir "$dirname"
   then
     if cd "$dirname"
     then
       unzip ../"$zip"
+      echo "File $zip unziped."
       cd ..
       rm -f $zip # Uncomment to delete the original zip file
+      echo "File $zip deleted. Unziped dir remains."
     else
       echo "Could not unpack $zip - cd failed"
     fi
@@ -18,4 +20,6 @@ do
   fi
 done
 
-maldet -a "$PWD/cache/"
+echo "Starting maldet scan..."
+
+maldet -a "$PWD"
