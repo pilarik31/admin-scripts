@@ -17,3 +17,5 @@ do
     echo "Could not unpack $zip - mkdir failed"
   fi
 done
+
+maldet -a "$PWD/cache/"
