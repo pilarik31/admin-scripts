@@ -1,5 +1,10 @@
 #!/bin/sh
 
+if [[ $(whoami) != "root" ]]; then
+    echo "Error: script not running as root or with sudo! Exiting..."
+    exit 1
+fi
+
 for zip in *.zip
 do
   dirname=`echo $zip | sed 's/\.zip$//'`
@@ -19,6 +24,12 @@ do
     echo "Could not unpack $zip - mkdir failed"
   fi
 done
+
+echo "Updating to latest version..."
+maldet -d
+
+echo "Updating virus signatures..."
+maldet -u
 
 echo "Starting maldet scan..."
 
