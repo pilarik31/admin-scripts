@@ -1,0 +1,31 @@
+#!/bin/bash
+if [[ $EUID -ne 0 ]]; then
+   echo "This script must be run as root." 
+   exit 1
+fi
+apt update
+apt upgrade -y
+apt install deluged deluge-console deluge-webui -y
+echo "[Unit]
+      Description=Deluge Bittorrent Client Daemon
+      Documentation=man:deluged
+      After=network-online.target
+      [Service]
+      Type=simple
+      User=deluge
+      Group=deluge
+      UMask=007
+      ExecStart=/usr/bin/deluged -d
+      Restart=on-failure
+      # Time to wait before forcefully stopped.
+      TimeoutStopSec=300
+      [Install]
+      WantedBy=multi-user.target" > /etc/systemd/system/deluged.service
+
+systelctl start deluged
+systemctl stop deluged
+echo "admin:admin:10" >> /home/deluge/.config/deluge/auth
+systelctl start deluged
+systemctl enable deluged
+config -s allow_remote True && quit | deluge-console
+deluge-web --fork
