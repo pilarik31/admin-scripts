@@ -1,0 +1,7 @@
+#!/bin/bash
+
+realcat='/usr/bin/cat'
+case "$(shuf -e -n1 a b c)" in
+	'a') echo meow ;;
+	*) $realcat $@ ;;
+esac

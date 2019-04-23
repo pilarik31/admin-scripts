@@ -1,0 +1,35 @@
+#!/usr/bin/env python3
+#https://pastebin.com/jNRnh81D
+
+from sys import argv
+
+message = argv[2]
+
+if (argv[1] == 'e'):
+    yeets = []
+    for c in message:
+        convert = "yeeeeeet"
+        convert = list(convert)
+        num = ord(c)
+        for x in range(0, len(convert)):
+            if (num % 2 == 1):
+                convert[x] = convert[x].upper()
+            num //= 2
+            if (num == 0):
+                break
+        convert = "".join(convert)
+        yeets.append(convert)
+    print(" ".join(yeets))
+
+elif(argv[1] == 'd'):
+    yeets = message.split(' ')
+    original = ""
+    for yeet in yeets:
+        c = 0
+        add = 1
+        for x in range(0, len(yeet)):
+            if (yeet[x].isupper()):
+                c += add
+            add *= 2
+        original += chr(c)
+    print(original)
